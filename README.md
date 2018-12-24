@@ -1,2 +1,8 @@
 # webpageWysiwygedit
-jquery-ui 实现的网页可视化编辑
+jquery-ui实现的网页可视化编辑
+支持页面实时保存到本地.
+
+使用方法:
+浏览器打开:
+HTTP：//localhost/template.html
+.
