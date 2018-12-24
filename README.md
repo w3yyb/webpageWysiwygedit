@@ -4,5 +4,5 @@ jquery-ui实现的网页可视化编辑
 
 使用方法:
 浏览器打开:
-HTTP：//localhost/template.html
+http://localhost/template.html
 .
