@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>网页可视化编辑 </title>
+  <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+  <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="jqueryui/style.css">
+  <style>
+  #draggable0 { width: 90px; height: 90px; padding: 0.5em; }
+  .draggable { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+  #draggable, #draggable2 { margin-bottom:20px; }
+  #draggable { cursor: n-resize; }
+  #draggable2 { cursor: e-resize; }
+  #containment-wrapper { width: 95%; height:150px; border:2px solid #ccc; padding: 10px; }
+  h3 { clear: left; }
+  </style>
+  <script>
+  $(function() {
+       $( "#draggable0" ).draggable();
+    $( "#draggable" ).draggable({ axis: "y" });
+    $( "#draggable2" ).draggable({ axis: "x" });
+ 
+    $( "#draggable3" ).draggable({ containment: "#containment-wrapper", scroll: false });
+    $( "#draggable5" ).draggable({ containment: "parent" });
+
+ $( ".draggable,#draggable5" ).draggable({
+      stop: function() {
+        var htmlval = '<!doctype html>'+ document.documentElement.outerHTML;
+         $.post("savepage.php",htmlval,function(result){
+  });
+      }
+    });
+
+  });
+
+  function html2Escape(sHtml) {
+ return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
+}
+  </script>
+</head>
+<body>
+ 
+<h3>拖拽</h3>
+ <div id="draggable0" class="draggable ui-widget-content">
+  <p>任意拖拽</p>
+</div>
+
+<div id="draggable" class="draggable ui-widget-content">
+  <p>垂直拖拽</p>
+</div>
+ 
+<div id="draggable2" class="draggable ui-widget-content">
+  <p>水平拖拽</p>
+</div>
+
+  <div style="height:350px;"></div>
+<h3> 约束：</h3>
+<div id="containment-wrapper">
+  <div id="draggable3" class="draggable ui-widget-content">
+    <p>我被约束在盒子里</p>
+  </div>
+ 
+  <div class="draggable ui-widget-content">
+    <p id="draggable5" class="ui-widget-header">我被约束在父元素内</p>
+  </div>
+</div>
+ 
+ 
+</body>
+</html>
